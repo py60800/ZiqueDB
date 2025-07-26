@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/py60800/zique/player"
-	"github.com/py60800/zique/util"
-	"github.com/py60800/zique/zdb"
+	"github.com/py60800/ZiqueDB/player"
+	"github.com/py60800/ZiqueDB/util"
+	"github.com/py60800/ZiqueDB/zdb"
 
 	"github.com/gotk3/gotk3/cairo"
 	"github.com/gotk3/gotk3/gdk"

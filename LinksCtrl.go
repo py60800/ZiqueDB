@@ -10,7 +10,7 @@ import (
 
 	"unicode"
 
-	"github.com/py60800/zique/zdb"
+	"github.com/py60800/ZiqueDB/zdb"
 )
 
 type ExtLinkT struct {

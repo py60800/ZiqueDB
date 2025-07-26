@@ -6,10 +6,10 @@ import (
 
 	"time"
 
-	"github.com/py60800/zique/search"
-	"github.com/py60800/zique/util"
-	"github.com/py60800/zique/zdb"
-	"github.com/py60800/zique/zique"
+	"github.com/py60800/ZiqueDB/search"
+	"github.com/py60800/ZiqueDB/util"
+	"github.com/py60800/ZiqueDB/zdb"
+	"github.com/py60800/ZiqueDB/zique"
 
 	"github.com/gotk3/gotk3/gtk"
 )

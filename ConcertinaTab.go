@@ -4,9 +4,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/py60800/zique/svgtab"
-	"github.com/py60800/zique/zdb"
-	"github.com/py60800/zique/zixml"
+	"github.com/py60800/ZiqueDB/svgtab"
+	"github.com/py60800/ZiqueDB/zdb"
+	"github.com/py60800/ZiqueDB/zixml"
 
 	"github.com/gotk3/gotk3/gtk"
 )

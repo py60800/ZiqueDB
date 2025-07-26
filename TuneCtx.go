@@ -6,8 +6,8 @@ import (
 
 	"time"
 
-	"github.com/py60800/zique/util"
-	"github.com/py60800/zique/zdb"
+	"github.com/py60800/ZiqueDB/util"
+	"github.com/py60800/ZiqueDB/zdb"
 
 	"github.com/gotk3/gotk3/gdk"
 	"github.com/gotk3/gotk3/gtk"

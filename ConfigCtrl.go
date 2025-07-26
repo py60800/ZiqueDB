@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/py60800/zique/zdb"
+	"github.com/py60800/ZiqueDB/zdb"
 
 	"github.com/gotk3/gotk3/gtk"
 )

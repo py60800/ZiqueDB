@@ -4,11 +4,11 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/py60800/zique/imgprint"
-	"github.com/py60800/zique/player"
-	"github.com/py60800/zique/svgtab"
-	"github.com/py60800/zique/util"
-	"github.com/py60800/zique/zdb"
+	"github.com/py60800/ZiqueDB/imgprint"
+	"github.com/py60800/ZiqueDB/player"
+	"github.com/py60800/ZiqueDB/svgtab"
+	"github.com/py60800/ZiqueDB/util"
+	"github.com/py60800/ZiqueDB/zdb"
 
 	"github.com/gotk3/gotk3/gdk"
 	"github.com/gotk3/gotk3/gtk"

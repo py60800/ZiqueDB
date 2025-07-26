@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/py60800/zique/util"
+	"github.com/py60800/ZiqueDB/util"
 
 	"github.com/gotk3/gotk3/cairo"
 	"github.com/gotk3/gotk3/gdk"
