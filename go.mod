@@ -1,4 +1,4 @@
-module ZiqueView3
+module ZiqueDB
 
 go 1.23.4
 
