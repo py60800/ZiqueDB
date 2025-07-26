@@ -1,4 +1,4 @@
-module github.com/py60800/zique/search
+module github.com/py60800/ZiqueDB/search
 
 go 1.23.4
 

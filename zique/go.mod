@@ -1,6 +1,6 @@
-module zique
+module github.com/py60800/ZiqueDB/zique
 
-go 1.18
+go 1.23
 
 require (
 	gitlab.com/gomidi/midi/v2 v2.0.30

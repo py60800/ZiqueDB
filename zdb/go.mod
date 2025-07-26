@@ -1,4 +1,4 @@
-module github.com/py60800/zique/zdb
+module github.com/py60800/ZiqueDB/zdb
 
 go 1.23.4
 
