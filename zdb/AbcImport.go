@@ -6,7 +6,7 @@ import (
 	"os"
 	"path"
 	"strings"
-	"github.com/py60800/zique/zixml"
+	"github.com/py60800/ZiqueDB/zixml"
 )
 
 type AbcImporter struct {

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/py60800/zique/util"
-	"github.com/py60800/zique/zixml"
+	"github.com/py60800/ZiqueDB/util"
+	"github.com/py60800/ZiqueDB/zixml"
 
 	"gorm.io/gorm"
 )

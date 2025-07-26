@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/py60800/zique/svgtab"
-	"github.com/py60800/zique/util"
+	"github.com/py60800/ZiqueDB/svgtab"
+	"github.com/py60800/ZiqueDB/util"
 
 	"github.com/mozillazg/go-unidecode"
 	"gorm.io/gorm"

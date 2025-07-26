@@ -8,7 +8,7 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/py60800/zique/util"
+	"github.com/py60800/ZiqueDB/util"
 )
 
 var DataBase = "FolkTune.db"
