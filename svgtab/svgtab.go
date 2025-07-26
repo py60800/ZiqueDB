@@ -14,7 +14,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/py60800/zique/util"
+	"github.com/py60800/ZiqueDB/util"
 )
 
 //go:embed concertina.yml
