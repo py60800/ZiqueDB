@@ -1,4 +1,4 @@
-module zixml
+module github.com/py60800/ZiqueDB/zixml
 
 go 1.23.4
 
