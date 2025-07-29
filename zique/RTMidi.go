@@ -46,19 +46,32 @@ func (p PTempoChange) GetRtMidiEvent() []byte {
 
 func GetMidiSink(midiPort string) func(rtmidi.Message) error {
 	Ports := rtmidi.GetOutPorts()
-	fmt.Println("Midi Ports")
+	fmt.Println("Available Midi Ports:")
 	for _, p := range Ports {
 		fmt.Println("-", p)
-	} //	if out, err := rtmidi.FindOutPort("Synth"); err == nil {
+	}
+	if len(Ports) == 0 {
+		panic("A midi port is required")
+	}
 	if out, err := rtmidi.FindOutPort(midiPort); err == nil {
 		fmt.Println("Got synth")
 		send, err := rtmidi.SendTo(out)
 		if err != nil {
-			panic(err)
+			panic("Can't connect to midi port")
 		}
 		return send
+	} else {
+		// Try a fall back to last channel
+		for i := range Ports {
+			j := len(Ports) - 1 - i
+			send, err := rtmidi.SendTo(Ports[j])
+			if err == nil {
+				fmt.Println("Fallback to midi port:", Ports[j])
+				return send
+			}
+		}
 	}
-	panic("Synth Failure()")
+	panic("Can't locate midi port")
 }
 
 func RtMidiSink(midiPort string, bChan chan []byte) {

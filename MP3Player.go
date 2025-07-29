@@ -3,11 +3,9 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"math"
 	"strconv"
-	"strings"
 	"time"
 
 	"github.com/py60800/ZiqueDB/player"
@@ -125,11 +123,11 @@ func (m *Mp3PlayWidget) markerUpdate() {
 		var label string
 		switch i {
 		case 0:
-			label = "Mark start"
+			label = "Set start"
 		case len(m.Markers) - 1:
-			label = "Mark end"
+			label = "Set end"
 		default:
-			label = fmt.Sprintf("Mark %v => %v", i, i+1)
+			label = fmt.Sprintf("Set %v>%v", i, i+1)
 		}
 		mrk.button.SetLabel(label)
 		m.markerBox.Attach(mrk.button, 2*i, 0, 2, 1)
@@ -277,7 +275,9 @@ func (m *Mp3PlayWidget) startTickCallBack(mode int, from, to, duration float64) 
 	})
 
 }
-
+func fRound(d float64) float64 {
+	return math.Round(d*10.0) / 10.0
+}
 func Mp3PlayWidgetNew(signalMarkerChange func(), mainCursor *gtk.DrawingArea) (*Mp3PlayWidget, gtk.IWidget) {
 	m := &Mp3PlayWidget{}
 	m.frame, _ = gtk.FrameNew("Mp3 player")
@@ -328,7 +328,7 @@ func Mp3PlayWidgetNew(signalMarkerChange func(), mainCursor *gtk.DrawingArea) (*
 	pgrid(lSpeed, 1)
 	m.speed, _ = gtk.SpinButtonNewWithRange(0.5, 2.0, 0.01)
 	m.speed.Connect("value-changed", func(sb *gtk.SpinButton) {
-		m.Player().SetTimeRatio(sb.GetValue())
+		m.Player().SetTimeRatio(1.0 / sb.GetValue())
 	})
 	m.speed.SetValue(1.0)
 	pgrid(m.speed, 1)
@@ -391,18 +391,18 @@ func Mp3PlayWidgetNew(signalMarkerChange func(), mainCursor *gtk.DrawingArea) (*
 	// To From Button
 	bFrom := MkButton("From", func() {
 		m.From = m.Position
-		m.from.SetValue(m.From)
+		m.from.SetValue(fRound(m.From))
 	})
 	m.adjFrom, _ = gtk.AdjustmentNew(0.0, 0.0, 100.0, 0.1, 1.0, 0)
 	m.adjTo, _ = gtk.AdjustmentNew(0.0, 0.0, 100.0, 0.1, 1.0, 0)
-	m.from, _ = gtk.SpinButtonNew(m.adjFrom, 0.1, 2)
+	m.from, _ = gtk.SpinButtonNew(m.adjFrom, 0.1, 1)
 	m.from.SetSensitive(false)
 	bTo := MkButton("To", func() {
 		m.To = m.Position
-		m.to.SetValue(m.To)
+		m.to.SetValue(fRound(m.To))
 
 	})
-	m.to, _ = gtk.SpinButtonNew(m.adjTo, 0.1, 2)
+	m.to, _ = gtk.SpinButtonNew(m.adjTo, 0.1, 1)
 	m.to.SetSensitive(false)
 
 	m.from.Connect("value-changed", func(sb *gtk.SpinButton) {
@@ -446,8 +446,8 @@ func (m *Mp3PlayWidget) SelectFile(mp3file *zdb.MP3File, from, to float64) {
 		m.Duration, _ = m.Player().LoadFile(m.file)
 	}
 	m.setDuration(m.Duration)
-	m.from.SetValue(m.From)
-	m.to.SetValue(m.To)
+	m.from.SetValue(fRound(m.From))
+	m.to.SetValue(fRound(m.To))
 	m.position.SetText(fmt.Sprintf("%3.1f/%3.1f", 0.0, m.Duration))
 	m.speed.SetValue(1.0)
 	m.pitch.SetValue(0.0)
@@ -524,27 +524,29 @@ func MkMp3Selector(selectFile func(mp3 *zdb.MP3File)) (*Mp3Selector, gtk.IWidget
 	frame, _ := gtk.FrameNew("Mp3 Selector")
 	grid, _ := gtk.GridNew()
 	SetMargins(grid, 5, 5)
-	frame.Add(grid) // File Chooser
-	lFileChooser, _ := gtk.LabelNewWithMnemonic("File Search")
-	fileChooser, _ := gtk.FileChooserButtonNew("Select file", gtk.FILE_CHOOSER_ACTION_OPEN)
-	homeDir, _ := os.UserHomeDir()
-	fileChooser.SetCurrentFolder(homeDir)
-
-	fileChooser.Connect("file-set", func() {
-		file := fileChooser.GetFilename()
-		if strings.HasSuffix(file, ".mp3") {
-			mp3File := GetContext().mp3Collection.GetByFileName(file)
-			if mp3File != nil {
-				selectFile(mp3File)
-			} else {
-				Message(fmt.Sprintf("File %s not registred", file))
-			}
-		}
-	})
+	frame.Add(grid)
 	is := 0
-	grid.Attach(lFileChooser, 0, is, 2, 1)
-	grid.Attach(fileChooser, 2, is, Mp3GWidth-2, 1)
-	is++
+	/*	lFileChooser, _ := gtk.LabelNewWithMnemonic("File Search")
+		fileChooser, _ := gtk.FileChooserButtonNew("Select file", gtk.FILE_CHOOSER_ACTION_OPEN)
+		homeDir, _ := os.UserHomeDir()
+		fileChooser.SetCurrentFolder(homeDir)
+
+		fileChooser.Connect("file-set", func() {
+			file := fileChooser.GetFilename()
+			if strings.HasSuffix(file, ".mp3") {
+				mp3File := GetContext().mp3Collection.GetByFileName(file)
+				if mp3File != nil {
+					selectFile(mp3File)
+				} else {
+					Message(fmt.Sprintf("File %s not registred", file))
+				}
+			}
+		})
+		grid.Attach(lFileChooser, 0, is, 2, 1)
+		grid.Attach(fileChooser, 2, is, Mp3GWidth-2, 1)
+		is++
+	*/
+
 	// Search entry
 	search := MkButton("Search", func() {
 		txt, _ := m.searchText.GetText()
@@ -556,13 +558,17 @@ func MkMp3Selector(selectFile func(mp3 *zdb.MP3File)) (*Mp3Selector, gtk.IWidget
 	m.searchText = MkDeferedSearchEntry(&m.suspendChange, func(what string) {
 		m.doSearch(what)
 	})
-	bCurrent := MkButton("Curr", func() {
+	bCurrent := MkButton("Cur", func() {
 		m.doSearchCurrent()
 	})
-	m.withContent, _ = gtk.CheckButtonNewWithLabel("With Content")
-	grid.Attach(m.searchText, 0, is, Mp3GWidth-4, 1)
-	grid.Attach(search, Mp3GWidth-4, is, 1, 1)
-	grid.Attach(bCurrent, Mp3GWidth-3, is, 1, 1)
+	bScan := MkButton("Scan", func() {
+		GetContext().ScanMp3()
+	})
+	m.withContent, _ = gtk.CheckButtonNewWithLabel("W/ Content")
+	grid.Attach(m.searchText, 0, is, Mp3GWidth-5, 1)
+	grid.Attach(search, Mp3GWidth-5, is, 1, 1)
+	grid.Attach(bCurrent, Mp3GWidth-4, is, 1, 1)
+	grid.Attach(bScan, Mp3GWidth-3, is, 1, 1)
 	grid.Attach(m.withContent, Mp3GWidth-2, is, 2, 1)
 	m.withContent.Connect("toggled", func() {
 		txt, _ := m.searchText.GetText()

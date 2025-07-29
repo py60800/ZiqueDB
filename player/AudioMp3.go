@@ -11,8 +11,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/ebitengine/oto/v3"
 	mp3 "github.com/hajimehoshi/go-mp3"
+	"github.com/py60800/oto/v3"
 )
 
 type Mp3Player struct {

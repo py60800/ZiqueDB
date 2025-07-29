@@ -2,14 +2,17 @@ package zique
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
+	"path"
+	"strconv"
 	"strings"
 
-	"strconv"
+	_ "embed"
 
-	"gopkg.in/yaml.v3"
+	"github.com/py60800/ZiqueDB/util"
 )
+
+//go:embed pattern.yml
+var defaultPattern string
 
 // ******************************************************
 const (
@@ -56,21 +59,6 @@ type CPatternConfig struct {
 }
 
 var PatternConfig CPatternConfig
-
-func ReadConfig(fileName string) CPatternConfig {
-	// read config
-	data, err := ioutil.ReadFile(fileName)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var config CPatternConfig
-	err = yaml.Unmarshal(data, &config)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return config
-}
 
 type RPattern struct {
 	Note  string
@@ -230,14 +218,12 @@ func GetChordPattern(name string) []ChordStroke {
 	return []ChordStroke{}
 }
 
-func InitPattern() {
-	file := "pattern.yaml" // Dir changed
-	PatternConfig = ReadConfig(file)
+func InitPattern(context string) {
+	file := path.Join(context, "pattern.yml")
+	PatternConfig = util.ReadConfig[CPatternConfig](file, defaultPattern)
 	RollPattern = make(map[RPattern]RNoteSeq)
 
 	for _, p := range PatternConfig.Roll {
 		RollPattern[rPattern(p.Note, p.Type, p.Dot)] = noteSeq(p.Seq, p.Timing, p.Velocity)
 	}
-	fmt.Println(PatternConfig)
-
 }

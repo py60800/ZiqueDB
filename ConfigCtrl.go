@@ -4,15 +4,14 @@ package main
 import (
 	"fmt"
 
-	"github.com/py60800/ZiqueDB/zdb"
-
 	"github.com/gotk3/gotk3/gtk"
+	"github.com/py60800/ZiqueDB/zdb"
 )
 
 var sourceType = []string{
 	"Mscz",
 	"Mp3",
-	"Abc",
+	// "Abc",
 }
 
 type SourceRepositoryConfigurator struct {
@@ -21,21 +20,6 @@ type SourceRepositoryConfigurator struct {
 }
 
 func fillConfig(wLs *WListStore, c []zdb.SourceRepository) {
-	/*	ls := wLs.GetListStore()
-		ls.Clear()
-		for _, el := range c {
-			it := ls.Append()
-			ls.SetValue(it, 0, el.Location)
-			ls.SetValue(it, 1, el.Type)
-			r := "-"
-			if el.Recurse {
-				r = "Recurse"
-			}
-			ls.SetValue(it, 2, r)
-			ls.SetValue(it, 3, el.DefaultKind)
-			ls.SetValue(it, wLs.GetIdIdx(), el.ID)
-		}
-	*/
 	wLs.Clear()
 	for _, el := range c {
 		r := "-"

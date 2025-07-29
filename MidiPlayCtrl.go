@@ -62,8 +62,7 @@ func (pm *MidiPlayCtrl) Stop() {
 func (c *ZContext) MkMidiPlayCtrl() (*MidiPlayCtrl, gtk.IWidget) {
 	pm := &MidiPlayCtrl{}
 	pm.context = c
-	pm.Zique = zique.ZiquePlayerNew()
-	pm.Zique.Init(util.H.Get("MidiPort"))
+	pm.Zique = zique.ZiquePlayerNew(ConfigBase, util.H.Get("MidiPort"))
 
 	pm.menuButton, _ = gtk.MenuButtonNew()
 	pm.menuButton.SetLabel("Midi Ctrl...")

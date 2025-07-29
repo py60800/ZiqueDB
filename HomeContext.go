@@ -4,9 +4,13 @@ package main
 import (
 	"os"
 	"path"
+
+	"github.com/py60800/ZiqueDB/zdb"
 )
 
 var wHeader = "Default"
+
+var ConfigBase = path.Join(".", "context")
 
 func MakeHomeContext(baseDir string) {
 	if baseDir == "" {
@@ -14,7 +18,7 @@ func MakeHomeContext(baseDir string) {
 		if err != nil {
 			panic(err)
 		}
-		baseDir = path.Join(homeDir, "Documents", "FolkTuneWB")
+		baseDir = path.Join(homeDir, "Music", "ZiqueDB")
 		_, err = os.Stat(baseDir)
 		if err != nil {
 			err = os.MkdirAll(baseDir, 0777)
@@ -23,13 +27,16 @@ func MakeHomeContext(baseDir string) {
 			}
 		}
 	} else {
-		wHeader = path.Base(baseDir)
+		os.MkdirAll(baseDir, 0777) // Create New if required
+
 	}
+	wHeader = path.Base(baseDir)
 	err := os.Chdir(baseDir)
 	if err != nil {
 		panic(err)
 	}
 
 	os.Mkdir("tmp", 0777)
+	zdb.CreateDefaultFiles(ConfigBase)
 
 }

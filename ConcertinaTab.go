@@ -45,7 +45,7 @@ func (cc *ConcertinaCtrl) Quit() {
 }
 func (cc *ConcertinaCtrl) Show(c *ZContext) {
 	if tune := c.ActiveTune; tune != nil && tune.ID != 0 {
-		c.svgt = svgtab.SvgTabNew(tune.Img)
+		c.svgt = svgtab.SvgTabNew(ConfigBase, tune.Img)
 		mButtons := c.DB.TuneGetButtons(tune.ID)
 		buttons := make([]svgtab.Button, len(mButtons))
 		for i := range mButtons {

@@ -70,19 +70,19 @@ type ZiquePlayer struct {
 	RtFeedBack      chan RtMeasureTick
 }
 
-func ZiquePlayerNew() *ZiquePlayer {
+func ZiquePlayerNew(context string, midiPort string) *ZiquePlayer {
 	z := ZiquePlayer{
 		ZiqueCtrl: make(chan interface{}, 10),
 		FeedBack:  make(chan string, 2),
 		TickBack:  make(chan Tick, 2),
 	}
-
+	z.init(context, midiPort)
 	return &z
 }
 
-func (z *ZiquePlayer) Init(midiPort string) {
+func (z *ZiquePlayer) init(context string, midiPort string) {
 
-	InitPattern()
+	InitPattern(context)
 	if midiPort == "" {
 		midiPort = "Synth"
 	}

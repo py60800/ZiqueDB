@@ -91,16 +91,6 @@ func (c *MP3Collection) Search(what string, withContent bool, limit int) []MP3Fi
 	}
 	for _, n := range l {
 		res = append(res, c.list[n])
-		/*
-			if !withContent {
-				res = append(res, c.list[n])
-			} else {
-				id := c.list[n].ID
-				if t, ok := c.hasContent[id]; ok || t {
-					res = append(res, c.list[n])
-				}
-			}
-		*/
 		if len(res) >= limit {
 			break
 		}

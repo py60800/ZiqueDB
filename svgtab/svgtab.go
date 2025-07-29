@@ -151,9 +151,9 @@ func fixHeight(doc *xml.Document, delta float64) (float64, float64) {
 	return H, W
 }
 
-func SvgTabNew(file string) *SvgTab {
+func SvgTabNew(context string, file string) *SvgTab {
 	if !configInit {
-		config = util.ReadConfig[Config]("concertina.yml", defaultConfig)
+		config = util.ReadConfig[Config](path.Join(context, "concertina.yml"), defaultConfig)
 		note2button = configAnalysis(&config)
 		configInit = true
 	}

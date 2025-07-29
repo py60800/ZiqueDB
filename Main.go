@@ -75,6 +75,10 @@ func MessageConfirm(msg string) bool {
 	return r == gtk.RESPONSE_OK
 }
 
+func (c *ZContext) ScanMp3() {
+	zdb.MP3DBUpdate(c.DB)
+	c.mp3Collection = zdb.MP3CollectionNew(c.DB)
+}
 func (c *ZContext) MkMenu() {
 	c.menu, _ = gtk.MenuBarNew()
 	appMenu, _ := gtk.MenuItemNewWithLabel("App")
@@ -90,14 +94,13 @@ func (c *ZContext) MkMenu() {
 	appMenuGroup.Append(refreshEntry)
 	fmMp3, _ := gtk.MenuItemNewWithLabel("Scan MP3 Repositories")
 	fmMp3.Connect("activate", func() {
-		zdb.MP3DBUpdate(c.DB)
-		c.mp3Collection = zdb.MP3CollectionNew(c.DB)
+		c.ScanMp3()
 	})
 	appMenuGroup.Append(fmMp3)
 
-	refreshAbc, _ := gtk.MenuItemNewWithLabel("Scan ABC Repositories")
-	refreshAbc.Connect("activate", func() { zdb.AbcDBUpdate(c.DB) })
-	appMenuGroup.Append(refreshAbc)
+	/*	refreshAbc, _ := gtk.MenuItemNewWithLabel("Scan ABC Repositories")
+		refreshAbc.Connect("activate", func() { zdb.AbcDBUpdate(c.DB) })
+		appMenuGroup.Append(refreshAbc)*/
 
 	statEntry, _ := gtk.MenuItemNewWithLabel("Stats")
 	appMenuGroup.Append(statEntry)
@@ -403,7 +406,7 @@ func main() {
 
 	c := GetContext()
 	c.DB = zdb.TuneDBNew()
-	util.HelperInit()
+	util.HelperInit(ConfigBase)
 	zdb.ParamInit(c.DB)
 
 	c.sourceRepositories = c.DB.SourceRepositoryGetAll()

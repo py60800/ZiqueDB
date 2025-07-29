@@ -96,8 +96,8 @@ func (tl *STuneList) AppendT(t *zdb.MP3TuneInSet) {
 	tune := GetContext().DB.TuneGetByID(t.DTuneID)
 	iter := tl.ls.Append()
 	tl.ls.SetValue(iter, stTitle, tune.Title)
-	tl.ls.SetValue(iter, stFrom, fmt.Sprintf("%3.2f", t.From))
-	tl.ls.SetValue(iter, stTo, fmt.Sprintf("%3.2f", t.To))
+	tl.ls.SetValue(iter, stFrom, fmt.Sprintf("%3.1f", t.From))
+	tl.ls.SetValue(iter, stTo, fmt.Sprintf("%3.1f", t.To))
 	tl.ls.SetValue(iter, stPref, prefToText(t.Pref))
 	tl.ls.SetValue(iter, stId, tune.ID)
 	tl.ls.SetValue(iter, stTisId, t.ID)
@@ -108,9 +108,9 @@ func (tl *STuneList) AppendT(t *zdb.MP3TuneInSet) {
 func (tl *STuneList) Update(m []float64) {
 	if iter, ok := tl.ls.GetIterFirst(); ok {
 		for i := range m {
-			tl.ls.SetValue(iter, stFrom, fmt.Sprintf("%3.2f", m[i]))
+			tl.ls.SetValue(iter, stFrom, fmt.Sprintf("%3.1f", m[i]))
 			if i < len(m) {
-				tl.ls.SetValue(iter, stTo, fmt.Sprintf("%3.2f", m[i+1]))
+				tl.ls.SetValue(iter, stTo, fmt.Sprintf("%3.1f", m[i+1]))
 			} else {
 				tl.ls.SetValue(iter, stTo, fmt.Sprintf("???"))
 			}
@@ -164,7 +164,6 @@ func (tl *STuneList) getTune(iter *gtk.TreeIter) slTune {
 	}
 }
 func (tl *STuneList) locateTune(idx int, pos float64) int {
-
 	if iter, ok := tl.ls.GetIterFirst(); ok {
 		for i := 0; ; i++ {
 			if i+1 == idx {
@@ -177,7 +176,6 @@ func (tl *STuneList) locateTune(idx int, pos float64) int {
 		}
 	}
 	return 0
-
 }
 
 func (tl *STuneList) playTune(iter *gtk.TreeIter) {
@@ -310,7 +308,7 @@ func STuneSelectorNew(Append func(r *zdb.DTuneReference)) (*STuneSelector, gtk.I
 		}
 	})
 	grid.Attach(b, 4, 1, 1, 1)
-	curr := MkButton("Curr", func() {
+	curr := MkButton("Cur", func() {
 		t := GetContext().ActiveTune
 		if t != nil && t.ID != 0 {
 			ref := zdb.DTuneReference{

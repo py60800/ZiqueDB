@@ -14,11 +14,6 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-//go:embed config.yml
-var defaultConfiguration string
-
-const configFile = "config.yml"
-
 type HelperConfig struct {
 	Helpers map[string]string
 }
@@ -82,8 +77,8 @@ type Helper struct {
 
 var H *Helper
 
-func HelperInit() {
-	helperConfig = ReadConfig[HelperConfig](configFile, defaultConfiguration)
+func HelperInit(context string) {
+	helperConfig = ReadConfig[HelperConfig](path.Join(context, "config.yml"), "")
 	fmt.Println(helperConfig)
 	H = &Helper{currEnv: helperConfig.Helpers}
 	H.currEnv["HOME"], _ = os.UserHomeDir()
