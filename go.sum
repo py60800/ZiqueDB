@@ -2,8 +2,6 @@ github.com/antchfx/xpath v0.0.0-20170515025933-1f3266e77307 h1:C735MoY/X+UOx6SEC
 github.com/antchfx/xpath v0.0.0-20170515025933-1f3266e77307/go.mod h1:Yee4kTMuNiPYJ7nSNorELQMr1J33uOpXDMByNYhvtNk=
 github.com/dhowden/tag v0.0.0-20240417053706-3d75831295e8 h1:OtSeLS5y0Uy01jaKK4mA/WVIYtpzVm63vLVAPzJXigg=
 github.com/dhowden/tag v0.0.0-20240417053706-3d75831295e8/go.mod h1:apkPC/CR3s48O2D7Y++n1XWEpgPNNCjXYga3PPbJe2E=
-github.com/ebitengine/oto/v3 v3.3.3 h1:m6RV69OqoXYSWCDsHXN9rc07aDuDstGHtait7HXSM7g=
-github.com/ebitengine/oto/v3 v3.3.3/go.mod h1:MZeb/lwoC4DCOdiTIxYezrURTw7EvK/yF863+tmBI+U=
 github.com/ebitengine/purego v0.9.0-alpha.9 h1:+OPDXjPESTGhQ/2zO0aQeUR8r4o1feLMSDQzkA6z9ug=
 github.com/ebitengine/purego v0.9.0-alpha.9/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
 github.com/gotk3/gotk3 v0.6.3 h1:+Ke4WkM1TQUNOlM2TZH6szqknqo+zNbX3BZWVXjSHYw=
@@ -37,8 +35,8 @@ github.com/py60800/ZiqueDB/zique v0.0.0-20250729070545-6b8c18d77260 h1:+0OjcBODS
 github.com/py60800/ZiqueDB/zique v0.0.0-20250729070545-6b8c18d77260/go.mod h1:O5cyDm4FSs8lKcSgOSR2t3c1+z9NguGOtD6K1DCsxQs=
 github.com/py60800/ZiqueDB/zixml v0.0.0-20250729070545-6b8c18d77260 h1:t45hvS3c1u8AH1XI07YcO2nLTtEH4G8dQ8d+zqraSNc=
 github.com/py60800/ZiqueDB/zixml v0.0.0-20250729070545-6b8c18d77260/go.mod h1:zBmBJsfx9XKx0ZsLUrBXKjaSFxAyB5gVjWA/OWlFvdY=
-github.com/py60800/oto/v3 v3.0.0-20250729063211-298407125251 h1:NPSvyNXq0raoknnHViBWfeXawZjmAqEZkQv89saV1m8=
-github.com/py60800/oto/v3 v3.0.0-20250729063211-298407125251/go.mod h1:ZA8kpn1UiMnmZV0Qfm0oNxLkCms1DAT9T2ijJrXvr9A=
+github.com/py60800/oto/v3 v3.0.1 h1:1FeqnyfE/Y/dZRwxYKl4QjYvaWO9mSSdMD2PFrxG5wE=
+github.com/py60800/oto/v3 v3.0.1/go.mod h1:ZA8kpn1UiMnmZV0Qfm0oNxLkCms1DAT9T2ijJrXvr9A=
 github.com/subchen/go-xmldom v1.1.2 h1:7evI2YqfYYOnuj+PBwyaOZZYjl3iWq35P6KfBUw9jeU=
 github.com/subchen/go-xmldom v1.1.2/go.mod h1:6Pg/HuX5/T4Jlj0IPJF1sRxKVoI/rrKP6LIMge9d5/8=
 gitlab.com/gomidi/midi/v2 v2.0.30 h1:RgRYbQeQSab5ZaP1lqRcCTnTSBQroE3CE6V9HgMmOAc=

@@ -17,7 +17,6 @@ require (
 require (
 	github.com/antchfx/xpath v0.0.0-20170515025933-1f3266e77307 // indirect
 	github.com/dhowden/tag v0.0.0-20240417053706-3d75831295e8 // indirect
-	github.com/ebitengine/oto/v3 v3.3.3 // indirect
 	github.com/ebitengine/purego v0.9.0-alpha.9 // indirect
 	github.com/hajimehoshi/go-mp3 v0.3.4 // indirect
 	github.com/hookttg/svgparser v1.1.1 // indirect
@@ -25,7 +24,7 @@ require (
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/mattn/go-sqlite3 v1.14.22 // indirect
 	github.com/mozillazg/go-unidecode v0.2.0 // indirect
-	github.com/py60800/oto/v3 v3.0.0-20250729063211-298407125251 // indirect
+	github.com/py60800/oto/v3 v3.0.1 // indirect
 	github.com/subchen/go-xmldom v1.1.2 // indirect
 	gitlab.com/gomidi/midi/v2 v2.0.30 // indirect
 	golang.org/x/sys v0.34.0 // indirect
