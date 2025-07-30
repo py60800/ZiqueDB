@@ -2,6 +2,8 @@ package zdb
 
 import (
 	"fmt"
+	"os"
+	"path"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -109,6 +111,11 @@ func (db *TuneDB) SchemaUpdate() {
 func (db *TuneDB) SourceRepositoryGetAll() []SourceRepository {
 	var sr []SourceRepository
 	db.cnx.Find(&sr)
+	if len(sr) == 0 {
+		// Not yet configured => Generate default
+		sr = db.SourceRepositoryGenerateDefault()
+		db.cnx.Save(&sr)
+	}
 	return sr
 }
 func (db *TuneDB) SourceRepositoryUpdateAll(newSrc []SourceRepository) {
@@ -124,6 +131,18 @@ func (db *TuneDB) SourceRepositoryUpdateAll(newSrc []SourceRepository) {
 	for _, el := range prevM {
 		db.cnx.Delete(&el)
 	}
+}
+func (db *TuneDB) SourceRepositoryGenerateDefault() []SourceRepository {
+	sr := make([]SourceRepository, 0)
+	home, _ := os.UserHomeDir()
+	home = path.Join(home, "Music")
+
+	sr = append(sr, SourceRepository{Location: path.Join(home, "mp3"), Type: "Mp3", DefaultKind: "-", Recurse: true})
+	for _, k := range TuneKindDefaults {
+		kind := k.Kind
+		sr = append(sr, SourceRepository{Location: path.Join(home, "MuseScore", kind), Type: "Mscz", DefaultKind: kind, Recurse: false})
+	}
+	return sr
 }
 
 // Texternal link **************************************************************
