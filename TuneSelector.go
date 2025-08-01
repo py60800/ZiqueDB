@@ -107,7 +107,6 @@ func (ts *TuneSelector) RefreshFromList(ids []int) {
 }
 
 func (ts *TuneSelector) DoUpdate(doSort bool) {
-
 	if len(ts.TuneRefs) > 0 {
 		ts.IdxTune = 0
 		tune := ts.context.DB.TuneGetByID(ts.TuneRefs[0].ID)
@@ -117,17 +116,14 @@ func (ts *TuneSelector) DoUpdate(doSort bool) {
 	} else {
 		ts.countDisplay.SetText("---")
 	}
-
 }
 
 type RangeSelector struct {
-	idxMin int
-	idxMax int
-
-	from *gtk.ComboBoxText
-	to   *gtk.ComboBoxText
-	item []string
-
+	idxMin        int
+	idxMax        int
+	from          *gtk.ComboBoxText
+	to            *gtk.ComboBoxText
+	item          []string
 	suspendChange bool
 }
 
@@ -301,30 +297,6 @@ func (ts *TuneSelector) MkFilter() gtk.IWidget {
 	filterGrid.Attach(w, 0, is, 12, 1)
 	is++
 
-	/*	frameLL, _ := gtk.FrameNew("Tags")
-		lGrid, _ := gtk.GridNew()
-		frameLL.Add(lGrid)
-
-		ts.listFilter = 0
-		ts.lstList = make([]*gtk.CheckButton, len(TuneTags))
-		for i, llb := range TuneTags {
-			cb, _ := gtk.CheckButtonNewWithLabel(llb)
-			ts.lstList[i] = cb
-			lGrid.Attach(cb, (i%6)*3, i/6, 3, 1)
-			msk := 1 << i
-			cb.Connect("clicked", func(cp *gtk.CheckButton) {
-				if cp.GetActive() {
-					ts.listFilter |= msk
-				} else {
-					ts.listFilter &^= msk
-				}
-			})
-		}
-		lGrid.ShowAll()
-		nRow := (len(TuneTags) + 3) / 4
-		filterGrid.Attach(frameLL, 0, is, 12, nRow)
-		is += nRow
-	*/
 	fn, _ := gtk.LabelNew("First Note:")
 	filterGrid.Attach(fn, 0, is, 5, 1)
 	ts.fnEntry, _ = gtk.EntryNew()

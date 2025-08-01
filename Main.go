@@ -88,13 +88,14 @@ func (c *ZContext) MkMenu() {
 
 	appMenuGroup, _ := gtk.MenuNew()
 	appMenu.SetSubmenu(appMenuGroup)
-	refreshEntry, _ := gtk.MenuItemNewWithLabel("Scan Mscz Repositories")
+	refreshEntry, _ := gtk.MenuItemNewWithLabel("Scan MuseScore Repositories")
 	refreshEntry.Connect("activate", func() { c.TUpdate() })
 
 	appMenuGroup.Append(refreshEntry)
 	fmMp3, _ := gtk.MenuItemNewWithLabel("Scan MP3 Repositories")
 	fmMp3.Connect("activate", func() {
 		c.ScanMp3()
+
 	})
 	appMenuGroup.Append(fmMp3)
 
@@ -198,6 +199,7 @@ func (c *ZContext) Refresh() {
 func (c *ZContext) TUpdate() {
 	c.DB.MsczContentUpdate()
 	c.Refresh()
+	c.tuneSelector.Refresh()
 	c.DB.PurgeMscz()
 }
 func (c *ZContext) Stop() {

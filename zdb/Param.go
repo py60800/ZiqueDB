@@ -278,13 +278,12 @@ const (
 	PlOnTheWay
 	PlAlmost
 	PlPrettyClose
-	PlGood_P
-	PlGood_M
+	PlGood
 	PlGreat
 	PlLimit
 )
 
-var PlayLevelStr = []string{"ToLearn", "VeryBad", "OnTheWay", "Almost", "PrettyClose", "Good(p)", "Good(m)", "Great"}
+var PlayLevelStr = []string{"ToLearn", "VeryBad", "OnTheWay", "Almost", "PrettyClose", "Good", "Great"}
 var PlayLevelMax = len(PlayLevelStr)
 
 func (n PlayLevel) String() string {
