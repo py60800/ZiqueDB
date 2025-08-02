@@ -11,7 +11,7 @@ ZiqueDB is a desktop application  intended  initially to manage my own collectio
 - sets, lists creation
 - ...
     
-**Important:** As of now, ZiqueDB only runs on a Linux desktop.  A Windows version could be considered if there is a demand for it but some help would be needed.
+**Important:** As of now, ZiqueDB only runs on a Linux desktop.  A Windows version is on the way...
 
 Note that MP3 playing depends on your own collection MP3 files.
 
