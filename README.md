@@ -81,7 +81,7 @@ A MIDI synthesizer must be available before the start of ZiqueDB, it can be laun
     #!/bin/sh
     aplaymidi -l | grep -i synth 
     if [ $? -ne 0 ] ; then 
-    fluidsynth -a pulseaudio -q -si \ /usr/share/sounds/sf2/FluidR3_GM.sf2 &
+    fluidsynth -a pulseaudio -q -si /usr/share/sounds/sf2/FluidR3_GM.sf2 &
        sleep 1
     fi
     ~/bin/ZiqueDB &

@@ -7,7 +7,8 @@ import (
 
 	rtmidi "gitlab.com/gomidi/midi/v2"
 
-	_ "gitlab.com/gomidi/midi/v2/drivers/portmididrv" // autoregisters driver
+	// _ "gitlab.com/gomidi/midi/v2/drivers/portmididrv" // autoregisters driver
+	_ "gitlab.com/gomidi/midi/v2/drivers/rtmididrv" // autoregisters driver
 	//	"sync"
 )
 

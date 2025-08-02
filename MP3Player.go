@@ -296,16 +296,12 @@ func Mp3PlayWidgetNew(signalMarkerChange func(), mainCursor *gtk.DrawingArea) (*
 		iw += width
 	}
 
-	/*	play := MkButton("Play", func() {
-		m.play(m.From, m.To, player.PMPlayOnce)
-
-	})*/
 	play := MkButtonIcon("media-playback-start", func() {
 		m.play(m.From, m.To, player.PMPlayOnce)
 
 	})
 	pgrid(play, 1)
-	//	repeat := MkButton("Repeat", func() {
+
 	repeat := MkButtonIcon("media-playlist-repeat", func() {
 		if m.hide != nil {
 			m.hide()
